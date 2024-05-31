@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import Recorder from "./Recorder.tsx";
 import type { Schema } from "../amplify/data/resource";
 import { generateClient } from "aws-amplify/data";
 import { Authenticator } from '@aws-amplify/ui-react'
@@ -7,6 +8,7 @@ import '@aws-amplify/ui-react/styles.css'
 const client = generateClient<Schema>();
 
 function App() {
+
   const [todos, setTodos] = useState<Array<Schema["Todo"]["type"]>>([]);
 
   useEffect(() => {
@@ -41,9 +43,10 @@ function App() {
           Review next step of this tutorial.
         </a>
       </div>          
-      <button onClick={signOut}>Sign out</button>
+      <Recorder transcribedText=""/>    
+      
     </main>    
-      )}
+      )} 
     </Authenticator>
   );
 }
