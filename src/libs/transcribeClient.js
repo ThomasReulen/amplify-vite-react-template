@@ -18,7 +18,8 @@ import { StartStreamTranscriptionCommand } from "@aws-sdk/client-transcribe-stre
 import * as awsID from "./awsID.js";
 
 /** @type {MicrophoneStream} */
-const MicrophoneStreamImpl = MicrophoneStream.default;
+//const MicrophoneStreamImpl = MicrophoneStream.default;
+const MicrophoneStreamImpl = MicrophoneStream;
 
 const SAMPLE_RATE = 44100;
 /** @type {MicrophoneStream | undefined} */
@@ -61,6 +62,7 @@ const createTranscribeClient = () => {
 };
 
 const createMicrophoneStream = async () => {
+    
   microphoneStream = new MicrophoneStreamImpl();
   microphoneStream.setStream(
     await window.navigator.mediaDevices.getUserMedia({
@@ -79,6 +81,7 @@ const startStreaming = async (language, callback) => {
   });
   const data = await transcribeClient.send(command);
   for await (const event of data.TranscriptResultStream) {
+    console.log(event);
     for (const result of event.TranscriptEvent.Transcript.Results || []) {
       if (result.IsPartial === false) {
         const noOfResults = result.Alternatives[0].Items.length;
