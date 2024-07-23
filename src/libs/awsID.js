@@ -14,4 +14,4 @@ Inputs (replace in code):
 - IDENTITY_POOL_ID - an Amazon Cognito Identity Pool ID.
 */
 export const REGION = "eu-central-1";
-export const IDENTITY_POOL_ID = "";
+export const IDENTITY_POOL_ID = "eu-central-1:cab02253-9e9e-4dd9-987c-d8a0c7e028ef";
